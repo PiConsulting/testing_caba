@@ -1,2 +1,4 @@
 .venv
-testing_app.ipynb
+.env
+app/data/processed/
+app/data/raw/
