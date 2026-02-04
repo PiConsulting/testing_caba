@@ -1,0 +1,77 @@
+{
+  "in_ref": {
+    "prom": 803.643,
+    "total": 767479,
+    "quantity": 955
+  },
+  "out_ref": {
+    "prom": 19.338,
+    "total": 18468,
+    "quantity": 955
+  },
+  "in_tri": {
+    "prom": 2057.755,
+    "total": 1965156,
+    "quantity": 955
+  },
+  "out_tri": {
+    "prom": 28.651,
+    "total": 27362,
+    "quantity": 955
+  },
+  "in_rou": {
+    "prom": 976.232,
+    "total": 758532,
+    "quantity": 777
+  },
+  "out_rou": {
+    "prom": 28.199,
+    "total": 21911,
+    "quantity": 777
+  },
+  "in_per": {
+    "prom": 747.768,
+    "total": 560078,
+    "quantity": 749
+  },
+  "out_per": {
+    "prom": 127.836,
+    "total": 95749,
+    "quantity": 749
+  },
+  "in_gro": {
+    "prom": 2116.099,
+    "total": 1584958,
+    "quantity": 749
+  },
+  "out_gro": {
+    "prom": 37.007,
+    "total": 27718,
+    "quantity": 749
+  },
+  "in_rag": {
+    "prom": 2244.406,
+    "total": 1681060,
+    "quantity": 749
+  },
+  "out_rag": {
+    "prom": 122.645,
+    "total": 91861,
+    "quantity": 749
+  },
+  "retriever": {
+    "prom": 17.997,
+    "total": 13480,
+    "quantity": 749
+  },
+  "in_tot": {
+    "prom": 7662.055,
+    "total": 7317263,
+    "quantity": 955
+  },
+  "out_tot": {
+    "prom": 296.407,
+    "total": 283069,
+    "quantity": 955
+  }
+}

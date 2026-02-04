@@ -1,0 +1,18 @@
+agent: 
+  base_url : https://aca-orc-dev.happysmoke-87dca937.eastus2.azurecontainerapps.io/api/chat/test
+  timeout: 3
+  max_retries: 3
+
+
+headers:
+  Content-Type: application/json
+
+
+body:
+  trace_id: ""
+
+
+llm:
+  model: gpt-4o
+  embeddings: text-embedding-3-large
+  api_version: 2024-12-01-preview

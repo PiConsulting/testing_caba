@@ -1,0 +1,62 @@
+{
+  "reformulate": {
+    "prom": 1.451,
+    "p90": 2.187,
+    "p95": 3.154,
+    "quantity": 955
+  },
+  "triage": {
+    "prom": 1.803,
+    "p90": 3.219,
+    "p95": 5.334,
+    "quantity": 955
+  },
+  "router": {
+    "prom": 1.892,
+    "p90": 2.833,
+    "p95": 4.326,
+    "quantity": 777
+  },
+  "ag_call": {
+    "prom": 4.859,
+    "p90": 14.938,
+    "p95": 16.002,
+    "quantity": 749
+  },
+  "personality": {
+    "prom": 2.971,
+    "p90": 4.452,
+    "p95": 5.285,
+    "quantity": 749
+  },
+  "grounding": {
+    "prom": 2.245,
+    "p90": 3.281,
+    "p95": 5.328,
+    "quantity": 749
+  },
+  "retriever": {
+    "prom": 0.485,
+    "p90": 0.519,
+    "p95": 0.829,
+    "quantity": 749
+  },
+  "ret_embeddings": {
+    "prom": 0.235,
+    "p90": 0.259,
+    "p95": 0.555,
+    "quantity": 749
+  },
+  "rag_answer": {
+    "prom": 2.555,
+    "p90": 4.072,
+    "p95": 5.204,
+    "quantity": 749
+  },
+  "response_time": {
+    "prom": 13.054,
+    "p90": 24.732,
+    "p95": 28.449,
+    "quantity": 955
+  }
+}
