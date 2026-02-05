@@ -1,29 +1,5 @@
 Tareas
 
-+++ Crear clase para que lea distintos Datasets, y dependiendo de una variable, sume los necesarios para realizar las pruebas. Luego validar columnas/schema
-
-= Pruebas a Nodos:
-V--- Triage:
-  Capturar los falsos
-  Devolver metrica (%total, %agente)
-
-V--- Router: 
-  Validar con el dataset de entrada, no deberia haber un dataset de validacion
-  Devolver metricas (%total, %agente)
-
-V--- Personalidad:
-  Iterar sobre test de personalidad
-
-V--- Grounding:
-  Capturar los falsos
-  Devolver metrica (%total, %agente)
-
-A+++ Tiempos:
-  +++ Hacer los calculos de prom, p90 y p95 dentro de la funcion de prueba
-  +++ Hacer q solo tome valores distintos de 0
-
-V--- Tokens:
-  Hacer los calculos de prom y total dentro de la funcion de prueba
 
 V--- Ragas:
   Agregar script de ragas
@@ -37,8 +13,6 @@ V--- Ragas:
 - Generar un archivo .yaml para q tome la configuracion y poder escribir las pruebas a realizar sin tocar el codigo
 
 - Unificar criterio de nombrado de archivos de output
-
-- Funcion que llame a todas las metricas
 
 - Creacion de Logger
 

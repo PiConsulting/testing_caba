@@ -3,6 +3,7 @@ import pandas as pd
 import json
 from app.tests.timings import timing_tests
 from app.tests.tokens import token_tests
+from app.tests.foundrys import foundrys_tests
 from app.tests.nodes.triage import triage_tests
 from app.tests.nodes.router import router_tests, create_validation_dataset
 from app.tests.nodes.grounding import grounding_tests
@@ -25,6 +26,10 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dic
     tokens_result = token_tests(data=data)
     results['tokens'] = tokens_result
     
+  if config.get('FOUNDRYS'):
+    foudrys_result = foundrys_tests(data=data)
+    results['foundrys'] = foudrys_result
+  
   if config.get('TRIAGE'):
     triage_result = triage_tests(data=data)
     results['nodes']['triage'] = triage_result
