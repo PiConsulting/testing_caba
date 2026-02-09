@@ -1,16 +1,13 @@
 import os
-
-from azure.identity import DefaultAzureCredential
 from azure.cosmos import CosmosClient
 from dotenv import load_dotenv
 
 load_dotenv()
 
 ENDPOINT = os.getenv('COSMOS_ENDPOINT')
+KEY = os.getenv('COSMOS_KEY')
 DATABASE = os.getenv('DATABASE_NAME')
 
-credential = DefaultAzureCredential()
+client = CosmosClient(ENDPOINT, credential=KEY)
 
-client = CosmosClient(ENDPOINT, credential)
-for db in client.list_databases():
-  print(f'Database: {db['id']}')
+database = client.get_database_client(DATABASE)

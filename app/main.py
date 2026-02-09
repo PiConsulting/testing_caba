@@ -31,6 +31,8 @@ with open('./app/config/config.yaml', 'r') as file:
   
 client = RAGClient(config_data)
 
+responses = client.query_batch(df['user_input'],df['reference'])
+
 save_responses_in_json, response_file_path = client.save_api_responses(responses)
 
 with open(response_file_path, 'r', encoding='UTF-8') as f:
