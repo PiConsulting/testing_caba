@@ -1,12 +1,8 @@
 Tareas
 
-
 V--- Ragas:
   Agregar script de ragas
   Devolver las métricas
-
-
-- Guardar metricas en BD
 
 - Hacer la limpieza de los archivos json de carga dentro de este test
 

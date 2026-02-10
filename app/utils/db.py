@@ -4,10 +4,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ENDPOINT = os.getenv('COSMOS_ENDPOINT')
-KEY = os.getenv('COSMOS_KEY')
-DATABASE = os.getenv('DATABASE_NAME')
+def save_results_on_cosmos(results: dict):
 
-client = CosmosClient(ENDPOINT, credential=KEY)
+  ENDPOINT = os.getenv('COSMOS_ENDPOINT')
+  KEY = os.getenv('COSMOS_KEY')
+  DATABASE = os.getenv('DATABASE_NAME')
+  CONTAINER = 'datasources'
 
-database = client.get_database_client(DATABASE)
+  client = CosmosClient(ENDPOINT, credential=KEY)
+  database = client.get_database_client(DATABASE)
+  container = database.get_container_client(CONTAINER)
+  
+  results['id'] = results.get('timestamp')
+  
+  response = container.create_item(body=results)
+  
+  print("Item created:", response)

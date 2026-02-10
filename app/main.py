@@ -2,9 +2,10 @@ import yaml
 import json
 from app.datasets.loader import load_multiple_test_cases
 from app.datasets.validator import validate_dataset_schema
-from app.datasets.preprocessing import preprocess_dataframe
+
 from app.client.rag_client import RAGClient
 from app.tests.run_tests import run_tests
+from app.utils.db import save_results_on_cosmos
 
 file_list = [
   './app/data/raw/tramites.xlsx',
@@ -21,6 +22,7 @@ test_config = {
   'TRIAGE': True,
   'ROUTER': True,
   'GROUNDING': True,
+  'SAVE_RESULTS': True,
 }   
 
 df = load_multiple_test_cases(file_list)
@@ -44,3 +46,6 @@ results = run_tests(
   df = df, 
   timestamp = str(response_file_path)
 )
+
+if test_config.get('SAVE_RESULTS'):
+  save_results_on_cosmos(results=results)
