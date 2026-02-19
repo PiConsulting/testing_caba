@@ -21,7 +21,8 @@ test_config = {
   'ROUTER': {'test': True, 'report': False},
   'GROUNDING': {'test': True, 'report': False},
   'SAVE_RESULTS': False,
-}   
+  # 'PATH': './app/data/processed/reports/report'
+}     
 
 df = load_multiple_test_cases(file_list)
 df = validate_dataset_schema(df)
