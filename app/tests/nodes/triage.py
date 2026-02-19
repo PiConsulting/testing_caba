@@ -5,6 +5,7 @@ def triage_tests(data: list[dict],
                  generate_report: bool = False) -> dict:
   
   triages = []
+  # agregar route para evaluaciaon individual hacia cada agente
   output_columns = ['question', 'tag', 'comparison', 'reason']
   
   for item in data:

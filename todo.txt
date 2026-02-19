@@ -2,9 +2,12 @@ Tareas
 
 V--- Ragas:
   Agregar script de ragas
+    if para solo tomar consultas que tengan contexto y respuesta esperada
   Devolver las métricas
 
 - Hacer la limpieza de los archivos json de carga dentro de este test
+
+- Modificar la logica para que todos las pruebas generen un reporte, salvo que se indique lo contrario
 
 - Generar un archivo .yaml para q tome la configuracion y poder escribir las pruebas a realizar sin tocar el codigo
 
@@ -12,3 +15,13 @@ V--- Ragas:
 
 - Creacion de Logger
 
+- Agregar route para evaluacion (router, triage, ground) individual hacia cada agente
+
+- Agregar prueba de reformulate
+  + send requests guardando id
+  + guardar las respuestas e ir evaluando [messages] vs. question
+  + escribir un prompt para esta evaluacion
+
+- Agregar la prueba personality
+  + guardar las respuestas e ir evaluando rag_answer vs. personality
+  + escribir un prompt para esta evaluacion

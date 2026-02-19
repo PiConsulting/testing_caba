@@ -1,8 +1,6 @@
 import yaml
-import json
 from app.datasets.loader import load_multiple_test_cases
 from app.datasets.validator import validate_dataset_schema
-
 from app.client.rag_client import RAGClient
 from app.tests.run_tests import run_tests
 from app.utils.db import save_results_on_cosmos
@@ -37,12 +35,9 @@ responses = client.query_batch(df['user_input'],df['reference'])
 
 save_responses_in_json, response_file_path = client.save_api_responses(responses)
 
-with open(response_file_path, 'r', encoding='UTF-8') as f:
-  data = json.load(f)
-
 results = run_tests(
   config = test_config, 
-  data = data, 
+  data = responses, 
   df = df, 
   timestamp = str(response_file_path)
 )
