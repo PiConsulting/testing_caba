@@ -1,8 +1,6 @@
 import pandas as pd
 
-def triage_tests(data: list[dict],
-                 ouput_file_name: str = './app/data/processed/triage.xlsx', 
-                 generate_report: bool = False) -> dict:
+def triage_tests(data: list[dict]) -> dict:
   
   triages = []
   # agregar route para evaluaciaon individual hacia cada agente
@@ -22,10 +20,7 @@ def triage_tests(data: list[dict],
   df_results = pd.DataFrame(triages, columns= output_columns)
   metrics = generate_triage_metrics(df_results)
   
-  if generate_report:
-    df_results.to_excel(ouput_file_name, index=True)
-  
-  return metrics
+  return metrics, df_results
   
 
 def generate_triage_metrics(df:pd.DataFrame) -> dict:

@@ -1,5 +1,9 @@
 Tareas
 
+- Fixes:
+  * Grounding:
+      Agregar "reason" al reporte
+
 V--- Ragas:
   Agregar script de ragas
     if para solo tomar consultas que tengan contexto y respuesta esperada
@@ -7,7 +11,7 @@ V--- Ragas:
 
 - Hacer la limpieza de los archivos json de carga dentro de este test
 
-- Modificar la logica para que todos las pruebas generen un reporte, salvo que se indique lo contrario
+- Crear funcion para que se generen los reportes, con la logica ya implementada en app.run_tests - run_tests()
 
 - Generar un archivo .yaml para q tome la configuracion y poder escribir las pruebas a realizar sin tocar el codigo
 

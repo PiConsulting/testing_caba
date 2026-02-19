@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def timing_tests(data: list[dict], 
-                 ouput_file_name: str = './app/data/processed/timings.xlsx', 
-                 generate_report: bool = False) -> dict:
+def timing_tests(data: list[dict]) -> dict:
   
   output_columns = ['reformulate', 'triage', 'router', 'ag_call', 'personality', 'grounding', 'retriever', 'ret_embeddings', 'rag_answer','response_time']
   timings = []
@@ -40,11 +38,8 @@ def timing_tests(data: list[dict],
   df_results = pd.DataFrame(timings, columns=output_columns)
     
   metrics = generate_timing_metrics(df_results)
-  
-  if generate_report:
-    df_results.to_excel(ouput_file_name, index=True)
       
-  return metrics
+  return metrics, df_results
 
 
 def generate_timing_metrics(df:pd.DataFrame) -> dict:

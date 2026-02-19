@@ -1,9 +1,7 @@
 import pandas as pd
 
 def router_tests(data: list[dict],
-                validation: dict,
-                output_file_name: str = './app/data/processed/router.xlsx',
-                generate_report: bool=False) -> dict:
+                validation: dict) -> dict:
   routes = []
   output_colums = ['question', 'expected_route', 'obtained_route', 'comparison']
   
@@ -26,11 +24,8 @@ def router_tests(data: list[dict],
   
   df_results = pd.DataFrame(routes, columns= output_colums)
   metrics = generate_router_metrics(df_results)
-  
-  if generate_report:
-    df_results.to_excel(output_file_name, index=True)
     
-  return metrics
+  return metrics, df_results
 
 
 def generate_router_metrics(df: pd.DataFrame) -> dict:

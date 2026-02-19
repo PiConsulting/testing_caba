@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def token_tests(data: list[dict],
-                ouput_file_name: str = './app/data/processed/tokens.xlsx', 
-                generate_report: bool = False) -> dict:
+def token_tests(data: list[dict]) -> dict:
   tokens = []
   excel_columns = ['in_ref', 'out_ref', 'in_tri', 'out_tri', 'in_rou', 'out_rou', 'in_per', 'out_per', 'in_gro', 'out_gro','in_rag', 'out_rag', 'retriever', 'in_tot', 'out_tot']
   
@@ -43,12 +41,10 @@ def token_tests(data: list[dict],
     
   df_results = pd.DataFrame(tokens, columns=excel_columns)
     
-  if generate_report:
-    df_results.to_excel(ouput_file_name, index=True)
-    
   metrics = generate_token_metrics(df_results)
     
-  return metrics
+  return metrics, df_results
+
       
 def generate_token_metrics(df:pd.DataFrame) -> dict:
   df_copy = df.copy()

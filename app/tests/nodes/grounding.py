@@ -1,8 +1,6 @@
 import pandas as pd
 
-def grounding_tests(data: dict,
-                  output_file_name: str = './app/data/processed/grounding.xlsx',
-                  generate_report: bool = False):
+def grounding_tests(data: dict):
   groundings = []
   output_columns = ['question', 'grounding', 'reason']
   
@@ -28,10 +26,8 @@ def grounding_tests(data: dict,
   
   metrics = generate_grounding_metrics(df_results)
   
-  if generate_report:
-    df_results.to_excel(output_file_name, index=True)
-  
-  return metrics
+  return metrics, df_results
+
     
 def generate_grounding_metrics(df: pd.DataFrame) -> dict:
   df_copy = df.copy()

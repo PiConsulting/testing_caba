@@ -14,13 +14,13 @@ file_list = [
 ]
 
 test_config = {
-  'TIMINGS': True,
-  'TOKENS': True,
-  'FOUNDRYS': True,
-  'TRIAGE': True,
-  'ROUTER': True,
-  'GROUNDING': True,
-  'SAVE_RESULTS': True,
+  'TIMINGS': {'test': True, 'report': False},
+  'TOKENS': {'test': True, 'report': False},
+  'FOUNDRYS': {'test': True, 'report': False},
+  'TRIAGE': {'test': True, 'report': False},
+  'ROUTER': {'test': True, 'report': False},
+  'GROUNDING': {'test': True, 'report': False},
+  'SAVE_RESULTS': False,
 }   
 
 df = load_multiple_test_cases(file_list)
