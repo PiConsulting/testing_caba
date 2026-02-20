@@ -1,8 +1,7 @@
 Tareas
 
 - Fixes:
-  * Grounding:
-      Agregar "reason" al reporte
+
 
 V--- Ragas:
   Agregar script de ragas

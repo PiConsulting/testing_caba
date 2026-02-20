@@ -19,7 +19,8 @@ def grounding_tests(data: dict):
     
     question = item.get('original_question', '')
     grounding = item.get('partial_answers', {'grounding': {'is_grounded': False}}).get('grounding',{'is_grounded': False}).get('is_grounded', False)
-    reason = item.get('partial_answers', {'grounding': {'reason': ''}}).get('reason', '') 
+    reason = item.get('partial_answers', {'grounding': {'reason': ''}}).get('grounding',{'reason': ''}).get('reason', '')
+    
     groundings.append([question, grounding, reason])
       
   df_results = pd.DataFrame(groundings, columns=output_columns)
