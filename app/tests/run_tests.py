@@ -1,4 +1,3 @@
-import re
 import pandas as pd
 # import os
 # import json
@@ -9,15 +8,14 @@ from app.tests.nodes.triage import triage_tests
 from app.tests.nodes.router import router_tests, create_validation_dataset
 from app.tests.nodes.grounding import grounding_tests
 from app.utils.generate_reports import generate_reports
+from app.utils.clean_timestamp import clean_timestamp
 
 
 def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dict:
   
-  match = re.search(r'outcome_(\d{8}-\d{6})\.json', timestamp)
-  timestamp = match.group(1) if match else None
+  timestamp = clean_timestamp(timestamp)
   
   reports = []
-  
   results = {
     'timestamp': timestamp,
     'nodes': {}
@@ -64,12 +62,12 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dic
       reports.append([grounding_report, 'grounding'])
   
     
-  generate_reports(
-    config= config,
-    results= results,
-    timestamp= timestamp,
-    reports= reports
-  )
+  # generate_reports(
+  #   config= config,
+  #   results= results,
+  #   timestamp= timestamp,
+  #   reports= reports
+  # )
   
   # path = config.get('PATH', '')
   # if path != '':
@@ -87,4 +85,4 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dic
   # with open(f'./app/data/processed/results_{timestamp}.json', 'w') as fp:
   #   json.dump(results, fp, indent=2)
     
-  return results
+  return results, reports

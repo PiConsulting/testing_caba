@@ -3,7 +3,9 @@ from app.datasets.loader import load_multiple_test_cases
 from app.datasets.validator import validate_dataset_schema
 from app.client.rag_client import RAGClient
 from app.tests.run_tests import run_tests
+from app.utils.clean_timestamp import clean_timestamp
 from app.utils.db import save_results_on_cosmos
+from app.utils.generate_reports import generate_reports
 
 file_list = [
   './app/data/raw/tramites.xlsx',
@@ -36,12 +38,16 @@ responses = client.query_batch(df['user_input'],df['reference'])
 
 save_responses_in_json, response_file_path = client.save_api_responses(responses)
 
-results = run_tests(
+timestamp = clean_timestamp(response_file_path)
+
+results, reports = run_tests(
   config = test_config, 
   data = responses, 
   df = df, 
-  timestamp = str(response_file_path)
+  timestamp = timestamp
 )
 
 if test_config.get('SAVE_RESULTS'):
   save_results_on_cosmos(results=results)
+  
+generate_reports(test_config, results, timestamp, reports)
