@@ -60,7 +60,13 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dic
     results['nodes']['grounding'] = grounding_result
     if config.get('GROUNDING', {'report': False}).get('report', False):
       reports.append([grounding_report, 'grounding'])
-  
+      
+      
+  if config.get('REFORMULATE', {'text': False}).get('test', False):
+    raise NotImplementedError
+    # reformulate_result, reformulate_report = reformulate_tests(data)
+    
+
     
   # generate_reports(
   #   config= config,

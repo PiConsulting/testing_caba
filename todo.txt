@@ -2,7 +2,6 @@ Tareas
 
 - Fixes:
 
-
 V--- Ragas:
   Agregar script de ragas
     if para solo tomar consultas que tengan contexto y respuesta esperada
