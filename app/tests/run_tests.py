@@ -64,10 +64,8 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dic
       
   if config.get('REFORMULATE', {'text': False}).get('test', False):
     raise NotImplementedError
-    # reformulate_result, reformulate_report = reformulate_tests(data)
-    
-
-    
+  
+      
   # generate_reports(
   #   config= config,
   #   results= results,

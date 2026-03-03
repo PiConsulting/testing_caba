@@ -114,7 +114,7 @@ class RAGClient:
     output_data = [item.get('response') for item in responses]
 
     try:
-      with open(timestamped_path,'w', encoding='UTF-8') as f:
+      with open(timestamped_path, 'w', encoding='UTF-8') as f:
         if pretty_print:
           f.write(json.dumps(output_data, indent=2,   ensure_ascii=False))
           return str(timestamped_path), timestamped_path

@@ -1,4 +1,7 @@
 .venv
 .env
-app/data/processed/
-app/data/raw/
+*app/data/processed/
+*app/data/raw/
+*app/data/schemas/
+
+
