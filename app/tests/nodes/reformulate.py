@@ -1,11 +1,23 @@
+import os
 import json
 import time # usar time.perf_counter()
 import requests
 import pandas as pd
 from pathlib import Path
+from openai import AzureOpenAI
 from app.datasets.loader import load_test_cases
+from dotenv import load_dotenv
+load_dotenv()
 
 reformulate_dataset = load_test_cases('./app/data/raw/reformulate.xlsx')
+
+deployment = "gpt-5-chat"
+
+client = AzureOpenAI(
+    api_version="2025-01-01-preview",
+    azure_endpoint=os.getenv('AZURE_OPENAI_ENDPOINT'),
+    api_key= os.getenv('AZURE_OPENAI_API_KEY'),
+)
 
 def send_reformulate_requests(config: dict, dataset: pd.DataFrame) -> list[dict]:
   all_responses = []
@@ -57,9 +69,52 @@ def save_reformualte_responses(responses: list[dict], output_path: str = './app/
 
     except Exception as e:
       print('Failed to save responses to JSON')
-      raise
     
+
+def _chat_completions(system_content: str, user_content):
+
+  response = client.chat.completions.create(
+    messages=[
+        {
+          "role": "system",
+          "content": system_content,
+        },
+        {
+          "role": "system",
+          "content": user_content,
+        }
+    ],
+    max_tokens=500,
+    temperature=0,
+    top_p=1.0,
+    model=deployment,
+    response_format={"type": "json_object"}
+  )
     
-def reformulate_tests():
-  raise NotImplementedError
+  return response.choices[0].message.content
+
+
+def _load_prompt(filepath: str) -> str:
+  try:
+    with open(filepath, 'r') as file:
+      prompt = file.read()
+  except Exception as e:
+    print(e)
+  return prompt
+
+
+def reformulate_tests(responses: list[dict]):
+  results = []
+  system_role = _load_prompt('./app/prompts/reformulate_system.txt')
+  user = _load_prompt('./app/prompts/reformulate_user.txt')
   
+  for response in responses:
+    messages = response.get("messages", [])
+    user_role = user.format(messages = messages)
+    score = _chat_completions(system_role, user_role)
+    score_json = json.loads(score)
+    results.append(score_json)
+  
+  # average_score = sum([eval["score"] for eval in results]) / len(results)
+  average_score = sum([item['score'] for item in results]) / len(results)
+  return round(average_score, 2)  

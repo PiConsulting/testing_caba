@@ -7,13 +7,17 @@ from app.tests.foundrys import foundrys_tests
 from app.tests.nodes.triage import triage_tests
 from app.tests.nodes.router import router_tests, create_validation_dataset
 from app.tests.nodes.grounding import grounding_tests
+from app.tests.nodes.reformulate import reformulate_tests
 from app.utils.generate_reports import generate_reports
 from app.utils.clean_timestamp import clean_timestamp
 
 
-def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dict:
+def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: dict) -> dict:
   
   timestamp = clean_timestamp(timestamp)
+  
+  if 'general_tests' in timestamp:
+    general_timestamp = clean_timestamp(timestamp.get('general_timestamp'))
   
   reports = []
   results = {
@@ -61,9 +65,6 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: str) -> dic
     if config.get('GROUNDING', {'report': False}).get('report', False):
       reports.append([grounding_report, 'grounding'])
       
-      
-  if config.get('REFORMULATE', {'text': False}).get('test', False):
-    raise NotImplementedError
   
       
   # generate_reports(

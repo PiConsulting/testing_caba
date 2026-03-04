@@ -20,7 +20,6 @@ V--- Ragas:
 - Agregar route para evaluacion (router, triage, ground) individual hacia cada agente
 
 - Agregar prueba de reformulate
-  + send requests guardando id
   + guardar las respuestas e ir evaluando [messages] vs. question
   + escribir un prompt para esta evaluacion
 
