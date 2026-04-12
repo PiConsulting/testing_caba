@@ -83,7 +83,7 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: dict) -> di
     df.to_excel(f'{path}/{name}.xlsx')
 
     
-  with open(f'./app/data/processed/results_{timestamp}.json', 'w') as fp:
+  with open(f'./app/data/processed/results/results_{timestamp}.json', 'w') as fp:
     json.dump(results, fp, indent=2)
     
   return results, reports

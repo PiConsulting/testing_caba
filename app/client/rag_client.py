@@ -99,7 +99,7 @@ class RAGClient:
   
   def save_api_responses(self,
                          responses: list[dict],
-                         output_path: str = './app/data/processed/outcome.json',
+                         output_path: str = './app/data/processed/outcomes/outcome.json',
                          pretty_print: bool = True) -> str:
   
   

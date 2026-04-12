@@ -51,7 +51,7 @@ def send_reformulate_requests(config: dict, dataset: pd.DataFrame) -> list[dict]
   return all_responses
 
 
-def save_reformualte_responses(responses: list[dict], output_path: str = './app/data/processed/reformulate_outcome.json', pretty_print: bool = True): 
+def save_reformualte_responses(responses: list[dict], output_path: str = './app/data/processed/results/reformulate_outcome.json', pretty_print: bool = True): 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents= True, exist_ok=True)
 
