@@ -1,27 +1,24 @@
 import pandas as pd
-# import os
-# import json
+import os
+import json
 from app.tests.timings import timing_tests
 from app.tests.tokens import token_tests
 from app.tests.foundrys import foundrys_tests
 from app.tests.nodes.triage import triage_tests
 from app.tests.nodes.router import router_tests, create_validation_dataset
 from app.tests.nodes.grounding import grounding_tests
-from app.tests.nodes.reformulate import reformulate_tests
 from app.utils.generate_reports import generate_reports
 from app.utils.clean_timestamp import clean_timestamp
 
 
 def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: dict) -> dict:
   
-  timestamp = clean_timestamp(timestamp)
-  
   if 'general_tests' in timestamp:
-    general_timestamp = clean_timestamp(timestamp.get('general_timestamp'))
+    general_timestamp = clean_timestamp(timestamp.get('general_tests'))
   
   reports = []
   results = {
-    'timestamp': timestamp,
+    'timestamp': general_timestamp,
     'nodes': {}
   }
   
@@ -66,28 +63,27 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: dict) -> di
       reports.append([grounding_report, 'grounding'])
       
   
-      
-  # generate_reports(
-  #   config= config,
-  #   results= results,
-  #   timestamp= timestamp,
-  #   reports= reports
-  # )
+  generate_reports(
+    config= config,
+    results= results,
+    timestamp= general_timestamp,
+    reports= reports
+  )
   
-  # path = config.get('PATH', '')
-  # if path != '':
-  #   path += timestamp
-  #   try:
-  #     os.makedirs(path)
-  #   except OSError:
-  #     pass
+  path = config.get('PATH', './app/data/processed/reports')
+  if path != '':
+    path += general_timestamp
+    try:
+      os.makedirs(path)
+    except OSError:
+      pass
   
-  # for report in reports:
-  #   df, name = report[0], report[1]
-  #   df.to_excel(f'{path}/{name}.xlsx')
+  for report in reports:
+    df, name = report[0], report[1]
+    df.to_excel(f'{path}/{name}.xlsx')
 
     
-  # with open(f'./app/data/processed/results_{timestamp}.json', 'w') as fp:
-  #   json.dump(results, fp, indent=2)
+  with open(f'./app/data/processed/results_{timestamp}.json', 'w') as fp:
+    json.dump(results, fp, indent=2)
     
   return results, reports

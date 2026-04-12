@@ -26,3 +26,14 @@ V--- Ragas:
 - Agregar la prueba personality
   + guardar las respuestas e ir evaluando rag_answer vs. personality
   + escribir un prompt para esta evaluacion
+
+-----------------------------------------------------------------
+  VALIDACION DE MODELOS Y DATOS
+  - dataset estructurado o no estructurado
+  - alcance de las pruebas
+
+  ANALISIS METRICOS Y DE NEGOCIO
+  - indicadores de calidad (k1, recall, etc)
+  - aplicado a NEGOCIO
+
+  

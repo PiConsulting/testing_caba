@@ -48,14 +48,14 @@ def generate_timing_metrics(df:pd.DataFrame) -> dict:
   for i in df_copy:
     
     if i == 'response_time':
-      avg = np.nan_to_num(round(float(df[i][df[i] >= 3].mean()), 3), nan=0.0)
+      avg = float(np.nan_to_num(round(float(df[i][df[i] >= 3].mean()), 3), nan=0.0))
       amount = int((df[i] >= 3).sum())
     else:
-      avg = np.nan_to_num(round(float(df[i][df[i] != 0].mean()), 3), nan=0.0)
+      avg = float(np.nan_to_num(round(float(df[i][df[i] != 0].mean()), 3), nan=0.0))
       amount = int((df[i] != 0).sum())
       
-    p90 = np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.9)), 3), nan=0.0)
-    p95 = np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.95)), 3), nan=0.0)
+    p90 = float(np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.9)), 3), nan=0.0))
+    p95 = float(np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.95)), 3), nan=0.0))
     
     result[i] = {'prom': avg, 'p90':p90, 'p95':p95, 'quantity': amount}
   return result

@@ -1,2 +1,6 @@
 1. reformulate alucina
 
+2. Evaluar mas fuertemente descubrir
+
+
+WHERE EXISTS(SELECT VALUE i FROM i IN c.conversation_data.interactions WHERE i.timestamp > "2026-03-31T09:30:00"  AND i.timestamp <= "2026-03-31T09:59:00" AND  i.route_to = "descubrir")

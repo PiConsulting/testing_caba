@@ -50,7 +50,7 @@ def generate_token_metrics(df:pd.DataFrame) -> dict:
   df_copy = df.copy()
   result = {}
   for i in df_copy:
-    avg = np.nan_to_num(round(float(df[i][df[i] != 0].mean()), 3), nan=0.0)
+    avg = float(np.nan_to_num(round(float(df[i][df[i] != 0].mean()), 3), nan=0.0))
     tot = int(df[i].sum())
     amount = int((df[i] != 0).sum())
     result[i] = {'prom':avg, 'total': tot, 'quantity': amount}
