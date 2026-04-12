@@ -11,7 +11,7 @@ def timing_tests(data: list[dict]) -> dict:
     if item is None or 'ok' in item:
       continue
     
-    if 'router' in item['partial_answers']:     
+    if 'router' in item.get('partial_answers'):     
       route = item.get('partial_answers', {}).get('router', {}).get('route', '')
       
     node_metadata = item["node_metadata"]
