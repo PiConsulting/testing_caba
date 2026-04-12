@@ -17,21 +17,21 @@ def foundrys_tests(data: list[dict]) -> dict:
       tri_link = node_metadata.get('triage').get('endpoint'.split(':')[0], '')
       
       rou_link = node_metadata.get('router').get('endpoint'.split(':')[0], '')
-      per_link = node_metadata.get('personality', {'endpoint': 'x'}).get('endpoint', 'x')
-      gro_link = node_metadata.get('grounding', {'endpoint': 'x'}).get('endpoint', 'x')
+      per_link = node_metadata.get('personality', {'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
+      gro_link = node_metadata.get('grounding', {'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
       
-      ree_link = node_metadata.get(f'agent_{route}', {'retrieve_embeddings': {'endpoint': 'x'}}).get('retrieve_embeddings',{'endpoint': 'x'}).get('endpoint', 'x')
-      rag_link = node_metadata.get(f'agent_{route}', {'rag_answer': {'endpoint': 'x'}}).get('rag_answer',{'endpoint': 'x'}).get('endpoint', 'x')
+      ree_link = node_metadata.get(f'agent_{route}', {'retrieve_embeddings': {'endpoint': 'x'}}).get('retrieve_embeddings',{'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
+      rag_link = node_metadata.get(f'agent_{route}', {'rag_answer': {'endpoint': 'x'}}).get('rag_answer',{'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
 
       
       links.append([
-        ref_link.split(':')[0], 
+        ref_link, 
         tri_link, 
         rou_link, 
-        per_link.split(':')[0], 
-        gro_link.split(':')[0], 
-        ree_link.split(':')[0], 
-        rag_link.split(':')[0]
+        per_link, 
+        gro_link, 
+        ree_link, 
+        rag_link
         ])
 
   total_counts = Counter(chain.from_iterable(links))
