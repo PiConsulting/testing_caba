@@ -23,7 +23,7 @@ def token_tests(data: list[dict]) -> dict:
 
     if 'answer' in item and item['answer'] != '':
       t_rag_answer = node_metadata[f'agent_{route}']['rag_answer']['tokens']
-      t_agent_retriever = node_metadata[f'agent_{route}']['retrieve_embeddings']['tokens']  ['prompt_tokens']  
+      t_agent_retriever = node_metadata[f'agent_{route}']['retrieve_embeddings']['tokens']
     else:
       t_rag_answer = {'input': 0, 'output': 0, 'total': 0}
       t_agent_retriever = 0
@@ -44,6 +44,7 @@ def token_tests(data: list[dict]) -> dict:
   metrics = generate_token_metrics(df_results)
     
   return metrics, df_results
+  
 
       
 def generate_token_metrics(df:pd.DataFrame) -> dict:

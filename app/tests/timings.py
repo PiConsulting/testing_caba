@@ -26,8 +26,8 @@ def timing_tests(data: list[dict]) -> dict:
 
     if 'grounding' in node_metadata:
       t_retriever = node_metadata[f'agent_{route}']['retrieve']['timing']
-      t_retrieve_emb = node_metadata[f'agent_{route}']['retrieve_embeddings']['timing']
-      t_rag_answer = node_metadata[f'agent_{route}']['rag_answer']['timing']
+      t_retrieve_emb = node_metadata[f'agent_{route}']['retrieve_embeddings']['timings']
+      t_rag_answer = node_metadata[f'agent_{route}']['rag_answer']['timings']
     else:
       t_retriever = 0
       t_rag_answer = 0
@@ -54,8 +54,11 @@ def generate_timing_metrics(df:pd.DataFrame) -> dict:
       avg = float(np.nan_to_num(round(float(df[i][df[i] != 0].mean()), 3), nan=0.0))
       amount = int((df[i] != 0).sum())
       
+    med = float(np.nan_to_num(round(float(df[i][df[i] != 0].median()), 3), nan=0.0))
     p90 = float(np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.9)), 3), nan=0.0))
     p95 = float(np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.95)), 3), nan=0.0))
+    p99 = float(np.nan_to_num(round(float(df[i][df[i] != 0].quantile(0.99)), 3), nan=0.0))
+
     
-    result[i] = {'prom': avg, 'p90':p90, 'p95':p95, 'quantity': amount}
+    result[i] = {'prom': avg, 'med': med, 'p90':p90, 'p95':p95, 'p99': p99,'quantity': amount}
   return result

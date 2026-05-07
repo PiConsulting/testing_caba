@@ -13,15 +13,16 @@ def foundrys_tests(data: list[dict]) -> dict:
       node_metadata = item['node_metadata']
       route = item['partial_answers'].get('router', {'route': ''}).get('route', '')
       
-      ref_link = node_metadata.get('reformulate', '').get('endpoint'.split(':')[0], '')
-      tri_link = node_metadata.get('triage').get('endpoint'.split(':')[0], '')
+      ref_link = node_metadata.get('reformulate', '').get('endpoint', '').split(':')[0]
+      tri_link = node_metadata.get('triage').get('endpoint', '').split(':')[0]
+    
       
-      rou_link = node_metadata.get('router').get('endpoint'.split(':')[0], '')
-      per_link = node_metadata.get('personality', {'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
-      gro_link = node_metadata.get('grounding', {'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
+      rou_link = node_metadata.get('router').get('endpoint', '').split(':')[0]
+      per_link = node_metadata.get('personality', {'endpoint': 'x'}).get('endpoint', 'x').split(':')[0]
+      gro_link = node_metadata.get('grounding', {'endpoint': 'x'}).get('endpoint', 'x').split(':')[0]
       
-      ree_link = node_metadata.get(f'agent_{route}', {'retrieve_embeddings': {'endpoint': 'x'}}).get('retrieve_embeddings',{'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
-      rag_link = node_metadata.get(f'agent_{route}', {'rag_answer': {'endpoint': 'x'}}).get('rag_answer',{'endpoint': 'x'}).get('endpoint'.split(':')[0], 'x')
+      ree_link = node_metadata.get(f'agent_{route}', {'retrieve_embeddings': {'endpoint': 'x'}}).get('retrieve_embeddings',{'endpoint': 'x'}).get('endpoint', 'x').split(':')[0]
+      rag_link = node_metadata.get(f'agent_{route}', {'rag_answer': {'endpoint': 'x'}}).get('rag_answer',{'endpoint': 'x'}).get('endpoint', 'x').split(':')[0]
 
       
       links.append([
@@ -32,7 +33,7 @@ def foundrys_tests(data: list[dict]) -> dict:
         gro_link, 
         ree_link, 
         rag_link
-        ])
+      ])
 
   total_counts = Counter(chain.from_iterable(links))
   del total_counts['x']

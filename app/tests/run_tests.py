@@ -66,24 +66,24 @@ def run_tests(config: dict, data: dict, df: pd.DataFrame, timestamp: dict) -> di
       reports.append([grounding_report, 'grounding'])
       
   
-  generate_reports(
-    config= config,
-    results= results,
-    timestamp= general_timestamp,
-    reports= reports
-  )
+  # generate_reports(
+  #   config= config,
+  #   results= results,
+  #   timestamp= general_timestamp,
+  #   reports= reports
+  # )
   
-  path = config.get('PATH', './app/data/processed/reports')
-  if path != '':
-    path += general_timestamp
-    try:
-      os.makedirs(path)
-    except OSError:
-      pass
+  # path = config.get('PATH', './app/data/processed/reports')
+  # if path != '':
+  #   path += general_timestamp
+  #   try:
+  #     os.makedirs(path)
+  #   except OSError:
+  #     pass
   
-  for report in reports:
-    df, name = report[0], report[1]
-    df.to_excel(f'{path}/{name}.xlsx')
+  # for report in reports:
+  #   df, name = report[0], report[1]
+  #   df.to_excel(f'{path}/{name}.xlsx')
 
     
   with open(f'./app/data/processed/results/results_{general_timestamp}.json', 'w') as fp:
