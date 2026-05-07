@@ -23,7 +23,7 @@ def token_tests(data: list[dict]) -> dict:
 
     if 'answer' in item and item['answer'] != '':
       t_rag_answer = node_metadata[f'agent_{route}']['rag_answer']['tokens']
-      t_agent_retriever = node_metadata[f'agent_{route}']['retrieve_embeddings']['tokens']
+      t_agent_retriever = node_metadata[f'agent_{route}']['retrieve_embeddings']['tokens']['input']
     else:
       t_rag_answer = {'input': 0, 'output': 0, 'total': 0}
       t_agent_retriever = 0
